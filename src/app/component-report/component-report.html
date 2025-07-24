@@ -1,0 +1,20 @@
+<h2>📄 Submit Report</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title" required />
+  </div>
+
+  <div>
+    <label for="content">Content:</label>
+    <textarea id="content" formControlName="content" rows="5" required></textarea>
+  </div>
+
+  <div>
+    <label for="createdBy">Created By:</label>
+    <input id="createdBy" type="text" formControlName="createdBy" required />
+  </div>
+
+  <button type="submit">Submit Report</button>
+</form>

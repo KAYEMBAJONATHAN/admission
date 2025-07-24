@@ -1,0 +1,25 @@
+<h2>👩‍⚕️ Register Nurse</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name" required />
+  </div>
+
+  <div>
+    <label for="department">Department:</label>
+    <input id="department" type="text" formControlName="department" required />
+  </div>
+
+  <div>
+    <label for="shift">Shift:</label>
+    <select id="shift" formControlName="shift" required>
+      <option value="" disabled selected>Select Shift</option>
+      <option value="Morning">Morning</option>
+      <option value="Evening">Evening</option>
+      <option value="Night">Night</option>
+    </select>
+  </div>
+
+  <button type="submit">Register Nurse</button>
+</form>
