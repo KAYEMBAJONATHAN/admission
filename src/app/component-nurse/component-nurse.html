@@ -1,25 +1,54 @@
-<h2>👩‍⚕️ Register Nurse</h2>
+<div class="nurse-container">
+  <h2>👩‍⚕️ {{ selectedNurseId ? 'Update Nurse' : 'Register Nurse' }}</h2>
 
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <div>
-    <label for="name">Name:</label>
-    <input id="name" type="text" formControlName="name" required />
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" required />
+    </div>
+
+    <div>
+      <label for="department">Department:</label>
+      <input id="department" type="text" formControlName="department" required />
+    </div>
+
+    <div>
+      <label for="shift">Shift:</label>
+      <select id="shift" formControlName="shift" required>
+        <option value="" disabled>Select Shift</option>
+        <option value="Morning">Morning</option>
+        <option value="Evening">Evening</option>
+        <option value="Night">Night</option>
+      </select>
+    </div>
+
+    <button type="submit">
+      {{ selectedNurseId ? 'Update Nurse' : 'Register Nurse' }}
+    </button>
+  </form>
+
+  <div *ngIf="nurses.length > 0" class="nurse-table-container">
+    <h3>📝 Registered Nurses</h3>
+    <table class="nurse-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Shift</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let nurse of nurses">
+          <td>{{ nurse.name }}</td>
+          <td>{{ nurse.department }}</td>
+          <td>{{ nurse.shift }}</td>
+          <td>
+            <button class="edit-btn" (click)="selectNurse(nurse)">✏️ Edit</button>
+            <button class="delete-btn" (click)="deleteNurse(nurse.id, $event)">🗑️ Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <div>
-    <label for="department">Department:</label>
-    <input id="department" type="text" formControlName="department" required />
-  </div>
-
-  <div>
-    <label for="shift">Shift:</label>
-    <select id="shift" formControlName="shift" required>
-      <option value="" disabled selected>Select Shift</option>
-      <option value="Morning">Morning</option>
-      <option value="Evening">Evening</option>
-      <option value="Night">Night</option>
-    </select>
-  </div>
-
-  <button type="submit">Register Nurse</button>
-</form>
+</div>
